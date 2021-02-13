@@ -22,7 +22,9 @@ const showImages = (images) => {
   images.forEach(image => {
     let div = document.createElement('div');
     div.className = 'col-lg-3 col-md-4 col-xs-6 img-item mb-2';
-    div.innerHTML = ` <img class="img-fluid img-thumbnail" onclick=selectItem(event,"${image.webformatURL}") src="${image.webformatURL}" alt="${image.tags}">`;
+    div.innerHTML = ` 
+    <img class="img-fluid img-thumbnail" onclick=selectItem(event,"${image.webformatURL}") src="${image.webformatURL}" alt="${image.tags}">
+    <div id="viewImage"><a href="${image.webformatURL}" download> <button>View Image</button> </a></div>`;
     gallery.appendChild(div)
   })
 
@@ -124,8 +126,13 @@ searchBtn.addEventListener('click', function () {
   document.querySelector('.main').style.display = 'none';
   clearInterval(timer);
   const search = document.getElementById('search');
-  getImages(search.value)
-  sliders.length = 0;
+  if (search.value === '' ) {
+    // console.log('empty')
+    document.getElementById('validation-form').style.display = 'block'
+  }else{
+    getImages(search.value)
+    sliders.length = 0;
+  }
 })
 
 sliderBtn.addEventListener('click', function () {
