@@ -132,6 +132,7 @@ searchBtn.addEventListener('click', function () {
   }else{
     getImages(search.value)
     sliders.length = 0;
+    document.getElementById('validation-form').style.display = 'none'
   }
 })
 
@@ -139,6 +140,7 @@ sliderBtn.addEventListener('click', function () {
   const duration = document.getElementById('duration').value || 1000;
   if (duration >= 1000) {
     createSlider();
+    document.getElementById('duration-error').style.display = 'none';
   } else {
     document.getElementById('duration-error').style.display = 'block';
   }
